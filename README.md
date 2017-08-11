@@ -51,7 +51,8 @@ Then, this script shall be named as `post.php` to get it working.
 
 
 One can also specify something like this in his `action` parameter value:
-```<form [...] action="/post.php?redir=https://TARGET.SITE/<?php echo $_SERVER['REQUEST_URI'];?>">
+```
+<form [...] action="/post.php?redir=https://TARGET.SITE/<?php echo $_SERVER['REQUEST_URI'];?>">
 ```
 
 To make the PHP construct GET `redir` parameter denoting where to move the user after he has submitted his credentials (_not to confuse with where to POST credentials after logging them_).
@@ -65,7 +66,8 @@ The POST data collected from the phished form will then be transmited to the `LO
 
 When crafting HTML login page, one can use the PHP session variable: 
 
-```$_SESSION['phished_already']
+```
+$_SESSION['phished_already']
 ```
 to add forced redirection to the target site in his HTML files through the inline PHP code.
 
