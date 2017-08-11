@@ -94,7 +94,7 @@ Having phished for instance login form of the target website, this login form wi
 
  - **v0.1** - init
  - **v0.2** - added metadata gathering
- - **v0.2.1 **- unkn0w adds redirection to faked 'wrong password' message
+ - **v0.2.1** - unkn0w adds redirection to faked 'wrong password' message
  - **v0.3** - added CSV reporting method
  - **v0.4** - unkn0w have added redirection facility and improved nested POST arrays handling
  - **v0.5** - unkn0w added support for $post_url variable to support pages that have separate URLs for login form and login backend
