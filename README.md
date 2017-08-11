@@ -1,6 +1,7 @@
 # PhishingPost
 
 PHP Script intdended to be used during Phishing campaigns as a credentials collector linked to backdoored HTML `<form>` action parameter.
+Originally this script had been developed in the following [gist](https://gist.github.com/mgeeky/32375178621a5920e8c810d2d7e3b2e5).
 
 ---
 
