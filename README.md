@@ -74,7 +74,7 @@ to add forced redirection to the target site in his HTML files through the inlin
 ---
 
 
-### How is it working?
+### How it works?
 
 Having phished for instance login form of the target website, this login form will have it's action attribute changed to direct into this very script. Then, the script will collect the `$_POST` data and store them in file (in a `print_r` format, `csv` list or both, depending on setting `$log_format`). This script also takes care of issuing the warning message of having typed wrong password (or rather of redirecting the user onto file capable of displaying such message, via `$wrong_password_url` variable). Then, the script keeps _wrong passwords_ typed numer in a session variable to detect whether specific user has been phished already and he should be redirected to the **target site** immediately (in order to prevent him looking at the webpage and inspecing it). 
 
