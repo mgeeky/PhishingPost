@@ -36,7 +36,7 @@
      *
      *
      * Authors:
-     *  Mariusz B. / mgeeky
+     *  Mariusz Banach / mgeeky
      *  Jakub M. / unkn0w (https://github.com/unkn0w)
      *
      * Version:

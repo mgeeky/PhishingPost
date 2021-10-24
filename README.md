@@ -84,7 +84,7 @@ Having phished for instance login form of the target website, this login form wi
 
 ### Authors
 
-- Mariusz B. / mgeeky
+- Mariusz Banach / mgeeky
 - Jakub M. / [unkn0w](https://github.com/unkn0w)
 
 ---
@@ -105,5 +105,4 @@ Having phished for instance login form of the target website, this login form wi
 ### TODO:
 
 - Refactor the code to make it more readable and configurable
-
 
